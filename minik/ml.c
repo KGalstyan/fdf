@@ -1,19 +1,4 @@
-//#include "fdf.h"
-#include <unistd.h>
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
-#include <mlx.h>
-
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
-
+#include "minik.h"
 
 int	main(void)
 {
@@ -26,7 +11,7 @@ int	main(void)
 	img.img = mlx_new_image(mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
-	mlx_pixel_put(&img, mlx_win, 0, 0, 0x00FF0000);
+	draw_line(&img, mlx_win);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
