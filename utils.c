@@ -9,3 +9,31 @@ int	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
+
+void	free_matrix(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+
+// void	free_stack(t_stack **stack)
+// {
+// 	t_stack	*tmp;
+
+// 	if (!stack || !(*stack))
+// 		return ;
+// 	while (*stack)
+// 	{
+// 		tmp = (*stack)->next;
+// 		free(*stack);
+// 		*stack = tmp;
+// 	}
+// 	*stack = NULL;
+// }
