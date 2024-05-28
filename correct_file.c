@@ -1,10 +1,5 @@
 #include "fdf.h"
 
-int	is_digit(char h)
-{
-	return (h >= '0' && h <= '9');
-}
-
 static int correct_file_name(char *av)
 {
     int len = 0;
@@ -20,21 +15,31 @@ static int correct_arguments(char *str)
     int i;
     char **split_str;
 
-    split_str = ft_splir(str, ' ');
+    split_str = ft_split(str, ' ');
     i = 0;
     while(split_str[i])
     {
-        j = 0;
-        while(split_str[i][j])
+        if((ft_atoi(split_str[i]) > 100000) || (ft_atoi(split_str[i]) < -100000))
         {
-            if(!is_digit(split_str[i][j]))
-                return(1);
+            printf("MAX-MIN ERROR");
+            free_matrix(split_str);
+            return(0);
+        }
+        j = 0;
+        while(split_str[i][j] != '\n' && split_str[i][j] != '\0')
+        {
+            if (!(is_digit(split_str[i][j])))
+            {
+                printf("IS NOT DIGIT");
+                free_matrix(split_str);
+                return(0);
+            }
             j++;
         }
         i++;
     }
     free_matrix(split_str);
-    return(0);
+    return(1);
 }
 
 int correct_file(char *av)
@@ -43,17 +48,26 @@ int correct_file(char *av)
     char *str;
 
     if(!correct_file_name(av))
-        return(1);
+    {
+        printf("INcorrect filename");
+        return(0);
+    }
     fd = open(av, O_RDONLY);
     if(fd == -1)
-        return(1);
+    {
+        printf("INcorrect filename or can't open file");
+        return(0);
+    }
     str = get_next_line(fd);
     while(str)
     {
-        correct_arguments(str);
-        //printf("%s\n", str);
+        if(!correct_arguments(str))
+        {
+            free(str);
+            return(0);
+        }
         free(str);
         str = get_next_line(fd);
     }
-    return(0);
+    return(1);
 }

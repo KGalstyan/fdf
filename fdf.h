@@ -9,17 +9,22 @@
 #include <mlx.h>
 
 
-// typedef struct s_point
-// {
-//     int x;
-//     int y;
-//     int z;
-//     int x_previous;
-//     int y_previous;
-//     int y_previous;
-//     int color;
-//     int color_previous;
-// }              t_point;
+typedef struct s_point
+{
+    int x;
+    int y;
+    int z;
+    int x_previous;
+    int y_previous;
+    int color;
+    int color_previous;
+}               t_point;
+
+typedef struct s_vars
+{
+    
+}               t_vars;
+
 
 //libft
 int	ft_strcmp(const char *s1, const char *s2);
@@ -36,10 +41,11 @@ void	free_matrix(char **str);
 
 //correct file name
 int correct_file(char *av);
+int	is_digit(char h);
 
 //reading file
 int reading_file(char *av);
-void read_incert_file(char *str);
+int read_incert_file(char *str);
 
 
 //for drawing

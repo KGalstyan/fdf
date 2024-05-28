@@ -23,6 +23,11 @@ void	free_matrix(char **str)
 	free(str);
 }
 
+int	is_digit(char h)
+{
+	return (h >= '0' && h <= '9');
+}
+
 // void	free_stack(t_stack **stack)
 // {
 // 	t_stack	*tmp;
