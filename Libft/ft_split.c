@@ -6,11 +6,11 @@
 /*   By: kgalstya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:27:07 by kgalstya          #+#    #+#             */
-/*   Updated: 2024/05/07 15:45:20 by kgalstya         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:00:01 by kgalstya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 static size_t	ft_countwords(char const *s, char c)
 {

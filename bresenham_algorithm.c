@@ -9,4 +9,4 @@
 // y = (tmp + y) * sin(0.523599) - z;
 // }
 
-void all_data(t_point)
+// void all_data(t_point)

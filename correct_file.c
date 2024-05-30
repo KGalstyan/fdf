@@ -9,6 +9,8 @@ static int correct_file_name(char *av)
         return(1);
     return(0);
 }
+
+
 static int correct_arguments(char *str)
 {
     int j;
@@ -39,13 +41,14 @@ static int correct_arguments(char *str)
         i++;
     }
     free_matrix(split_str);
-    return(1);
+    return(i);
 }
 
 int correct_file(char *av)
 {
     int fd;
     char *str;
+    int len;
 
     if(!correct_file_name(av))
     {
@@ -59,10 +62,18 @@ int correct_file(char *av)
         return(0);
     }
     str = get_next_line(fd);
+    if(!str)
+    {
+        printf("Nothing in file");
+        return(0);
+    }
+    len = correct_arguments(str);
     while(str)
     {
-        if(!correct_arguments(str))
+        if(correct_arguments(str) == 0 || correct_arguments(str) != len)
         {
+            if(correct_arguments(str) != len)
+                printf("len is incorrect");
             free(str);
             return(0);
         }

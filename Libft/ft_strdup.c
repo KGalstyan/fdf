@@ -6,11 +6,11 @@
 /*   By: kgalstya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:50:53 by kgalstya          #+#    #+#             */
-/*   Updated: 2024/05/07 15:47:01 by kgalstya         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:00:24 by kgalstya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 char	*ft_strdup(const char *s)
 {

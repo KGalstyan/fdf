@@ -6,11 +6,11 @@
 /*   By: kgalstya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:05:00 by kgalstya          #+#    #+#             */
-/*   Updated: 2024/05/07 15:47:21 by kgalstya         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:00:27 by kgalstya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 char	*ft_substr(char const *s, int start, int len)
 {

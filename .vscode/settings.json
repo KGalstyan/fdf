@@ -2,7 +2,8 @@
     "files.associations": {
         "minik.h": "c",
         "ostream": "c",
-        "sstream": "c"
+        "sstream": "c",
+        "algorithm": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

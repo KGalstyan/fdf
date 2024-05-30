@@ -1,6 +1,17 @@
 #ifndef FDF_H
 #define FDF_H
 
+#define OFF_ESC 53
+#define OFF_X 20
+#define WIN_WIDTH 1280
+#define WIN_HEIGHT 720
+
+# define KEY_PRESS 2
+# define KEY_PRESS_MASK 1
+
+# define DESTROY_NOTIFY 17
+# define NO_EVENT_MASK 0
+
 #include <unistd.h>
 #include <stdio.h>
 #include <math.h>
@@ -14,16 +25,28 @@ typedef struct s_point
     int x;
     int y;
     int z;
-    int x_previous;
-    int y_previous;
-    int color;
-    int color_previous;
+    // int color;
 }               t_point;
 
-typedef struct s_vars
+
+typedef struct s_all
 {
-    
-}               t_vars;
+    void *mlx;
+    void *mlx_win;
+
+}              t_all;
+
+typedef struct s_img
+{
+    void *img;
+    char *addr;
+    int *bpp;
+    int *size_line;
+    int *endian;
+
+}              t_img;
+
+
 
 
 //libft
@@ -44,12 +67,14 @@ int correct_file(char *av);
 int	is_digit(char h);
 
 //reading file
-int reading_file(char *av);
-int read_incert_file(char *str);
+// void reading_file(char *av);
+// int read_incert_file(char *str);
 
 
 //for drawing
 void  isometric(int x, int y, int z);
 
+//mlx graphic
+void get_mlx_data(t_all *a);
 
 #endif

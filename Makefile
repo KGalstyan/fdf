@@ -1,11 +1,11 @@
 NAME = fdf
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -fsanitize=address -Wall -Wextra -Werror 
 
 MLX = -framework OpenGL -framework AppKit -lmlx
 
-SRC = $(wildcard *.c) $(wildcard ./Get_next_line/*.c)
+SRC = $(wildcard *.c) $(wildcard ./Get_next_line/*.c) $(wildcard ./Libft/*.c)
 
 #PRINTF = ./Printf
 #PRINTFA = ./Printf/libftprintf.a

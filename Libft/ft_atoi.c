@@ -6,11 +6,11 @@
 /*   By: kgalstya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:28:49 by kgalstya          #+#    #+#             */
-/*   Updated: 2024/05/07 15:28:55 by kgalstya         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:59:57 by kgalstya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../fdf.h"
 
 long long	ft_atoi(const char *nptr)
 {
