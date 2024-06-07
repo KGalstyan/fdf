@@ -40,11 +40,21 @@ typedef struct s_img
 {
     void *img;
     char *addr;
-    int *bpp;
-    int *size_line;
-    int *endian;
+    int bpp;
+    int size_line;
+    int endian;
+    int color;
 
 }              t_img;
+
+typedef struct s_map
+{
+    t_point p1;
+    t_point p2;
+    int **z_value;
+
+}               t_map;
+
 
 
 
