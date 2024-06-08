@@ -1,77 +1,77 @@
 #include "minik.h"
 
+
 void    mlx_pixel_put_img(t_img *img, int x, int y, int color)
 {
     char	*dst;
 
-	dst = img->addr + (x * img->line_length + y * (img->bits_per_pixel / 8));
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
+
+// int	is_steep()
+// {
+//      return (dy > dx);
+// }
+
+// void  isometric(t_point cord)
+// {
+//     int tmp;
+
+//     tmp = cord;
+//     x = (tmp - y) * cos(0.523599);
+//     y = (tmp + y) * sin(0.523599) - z;
+// }
+
 void draw_line(t_img *img, t_data cord) 
 {
+    int tx = cord.x2 - cord.x1;
+    int ty = cord.y2 - cord.y1;
     int dx = abs(cord.x2 - cord.x1);
     int dy = abs(cord.y2 - cord.y1);
     int p = 2 * dy - dx;
     int x = cord.x1, y = cord.y1;
 	int i = 0;
 
+    // t_point point;
+
 	if(dx > dy)
     {
-        // i = 0;
-        // while(i < dy)
-        // {
-        //     y++;
-        //     mlx_pixel_put_img(img, x, y, img->color);
-        //     if(p < 0)
-        //       p = p + (2 * dy);
-        //     else
-        //     {
-        //         p = p + (2 * dy) - (2 * dx);
-        //         x++;
-        //     }
-        //     mlx_pixel_put_img(img, x, y, img->color);
-        //     i++;
-        // }
         i = -1;
         while(++i < dx)
         {
+            if(tx > 0)
+                x++;
+            else
+                x--;
             if(p < 0)
               p = p + (2 * dy);
             else
             {
                 p = p + (2 * dy) - (2 * dx);
-                y++;
+                if(ty > 0)
+                    y++;
+                else
+                    y--;
             }
             mlx_pixel_put_img(img, x, y, img->color);
-            i++;
         }
     }
+
     else
     {
-        // i = -1;
-        // while(++i < dx)
-        // {
-        //     if(p < 0)
-        //         p = p + (2 * dy);
-        //     else
-        //     {
-        //         p = p + (2 * dy) - (2 * dx);
-        //         y++;
-        //     }
-        //     mlx_pixel_put_img(img, x, y, img->color);
-        //     i++;
-        // }
+        p = 2 * tx - ty;
         i = 0;
         mlx_pixel_put_img(img, x, y, img->color);
-        while(i < dy)
+        while(i < ty)
         {
-            x++;
+            y++;
             if(p < 0)
-              p = p + (2 * dy);
+              p = p + (2 * tx);
             else
             {
-                p = p + (2 * dy) - (2 * dx);
-                y++;
+                x++;
+                p = p + (2 * tx) - (2 * ty);
             }
             mlx_pixel_put_img(img, x, y, img->color);
             i++;
@@ -126,12 +126,25 @@ int	main(void)
 	img.img = mlx_new_image(mlx, 1280, 720);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	img.color = 255;
-	cord.x1 = 20;
+	cord.x1 = 500;
 	cord.y1 = 20;
-    cord.x2 = 700;
-    cord.y2 = 200;
-	draw_line(&img, cord);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+    cord.x2 = 20;
+    cord.y2 = 500;
+    // while(cord.x1 < 500)
+    // {
+	//     draw_line(&img, cord);
+	//     mlx_put_image_to_window(mlx, mlx_win, img.img, 400, 200);
+    //     cord.x1++;
+    //     cord.y1++;
+    //     cord.x2++;
+    //     cord.y2++;
+    //     printf("%d\n", cord.x1);
+    //     printf("%d\n", cord.x2);
+    //     printf("%d\n", cord.y1);
+    //     printf("%d\n", cord.y2);
+    // }
+    draw_line(&img, cord);
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 400, 200);
 	mlx_loop(mlx);
 }
 
