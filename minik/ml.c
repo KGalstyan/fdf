@@ -14,11 +14,11 @@ void    mlx_pixel_put_img(t_img *img, int x, int y, int color)
 //     return (dy > dx);
 // }
 
-// void  isometric(t_point cord)
+// void  isometric(int x, int y, int z)
 // {
 //     int tmp;
 
-//     tmp = cord;
+//     tmp = x;
 //     x = (tmp - y) * cos(0.523599);
 //     y = (tmp + y) * sin(0.523599) - z;
 // }
@@ -84,16 +84,16 @@ void draw_line(t_img *img, t_data cord)
     }
 }
 
-void z_rotate(float x, float y, float z, float angle)
-{
-    float tmp_x,tmp_y;
+// void z_rotate(float x, float y, float z, float angle)
+// {
+//     float tmp_x,tmp_y;
 
-    tmp_x = x;
-    tmp_y = y;
-    x = cos(angle) * tmp_x - sin(angle) * tmp_y;
-    y = sin(angle) * tmp_x + cos(angle) * tmp_y;
-    z = -z; 
-}
+//     tmp_x = x;
+//     tmp_y = y;
+//     x = cos(angle) * tmp_x - sin(angle) * tmp_y;
+//     y = sin(angle) * tmp_x + cos(angle) * tmp_y;
+//     z = -z; 
+// }
 
 
 
@@ -113,8 +113,8 @@ int	main(void)
 	img.color = 255;
     // while(mlx_hook(mlx_win, KEY_PRESS, KEY_PRESS_MASK, win_hooks, opo))
     //     opo.angle += 10;
-    int len = 10;
-    int hight = 8;
+    int len = 9;
+    int hight = 9;
     int x1,x2,y1,y2,z1,z2;
     z1 = 0;
     z2 = 0;
@@ -126,12 +126,14 @@ int	main(void)
         x2 = 1;
         while(x2 < len)
         {
-            z_rotate(x1, y1, 20, 5);
 	        cord.x1 = x1 * X_GAP;
 	        cord.y1 = y1 * Y_GAP;
-            z_rotate(x2, y2, 10, 5);
+            // isometric(cord.x1, cord.y1, z1);
+            // z_rotate(cord.x1, cord.y1, 10, 10);
             cord.x2 = x2 * X_GAP;
             cord.y2 = y2 * Y_GAP;
+            // isometric(cord.x2, cord.y2, z2);
+            // z_rotate(cord.x1, cord.y1, 10, 10);
             draw_line(&img, cord);
             mlx_put_image_to_window(mlx, mlx_win, img.img, 400, 200);
             x1++;
@@ -151,21 +153,14 @@ int	main(void)
         y2 = 1;
         while(y2 < hight)
         {
-            printf("%d\n", cord.x1);
-            printf("%d\n", cord.y1);
-            printf("%d\n", cord.x2);
-            printf("%d\n", cord.y2);
-            z_rotate(x1, y1, 30, 5);
-            z_rotate(x2, y2, 20, 5);
-            printf("----------------------\n");
-            printf("%d\n", cord.x1);
-            printf("%d\n", cord.y1);
-            printf("%d\n", cord.x2);
-            printf("%d\n\n\n", cord.y2);
 	        cord.x1 = x1 * X_GAP;
 	        cord.y1 = y1 * Y_GAP;
+            //isometric(cord.x1, cord.y1, z1);
+            // z_rotate(cord.x1, cord.y1, 10, 10);
             cord.x2 = x2 * X_GAP;
             cord.y2 = y2 * Y_GAP;
+            // isometric(cord.x2, cord.y2, z2);
+            // z_rotate(cord.x2, cord.y2, 10, 10);
             draw_line(&img, cord);
             mlx_put_image_to_window(mlx, mlx_win, img.img, 400, 200);
             y1++;

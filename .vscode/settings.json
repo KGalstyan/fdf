@@ -3,7 +3,8 @@
         "minik.h": "c",
         "ostream": "c",
         "sstream": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "complex": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

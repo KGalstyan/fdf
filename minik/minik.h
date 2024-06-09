@@ -31,8 +31,8 @@ typedef struct	s_img {
 
 typedef struct  s_data
 {
-    int x1;
     int x2;
+    int x1;
     int y1;
     int y2;
     int z1;
