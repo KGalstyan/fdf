@@ -17,6 +17,9 @@
 # define DESTROY_NOTIFY 17
 # define NO_EVENT_MASK 0
 
+#define X_GAP 30
+#define Y_GAP 30
+
 typedef struct	s_img {
 	void	*img;
 	char	*addr;
@@ -32,6 +35,8 @@ typedef struct  s_data
     int x2;
     int y1;
     int y2;
+    int z1;
+    int z2;
 
 }               t_data;
 
@@ -42,6 +47,12 @@ typedef struct s_point
     int z;
     // int color;
 }               t_point;
+
+typedef struct s_fdf_opdata
+{
+    int angle;
+
+}               t_fdf_opdata;
 
 // typedef struct  s_line
 // {

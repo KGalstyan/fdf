@@ -3,7 +3,7 @@ NAME = minik
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-FILE = ml.c draw_line.c 
+FILE = ml.c
 
 MLX = -framework OpenGL -framework AppKit -lmlx
 

@@ -68,7 +68,7 @@ void draw_line(t_img *img, t_data cord)
                 y++;
             else
                 y--;
-            if(p < 0 && tx > 0)
+            if(p < 0 && tx >= 0)
               p = p + (2 * tx);
             else
             {
@@ -84,30 +84,104 @@ void draw_line(t_img *img, t_data cord)
     }
 }
 
+void z_rotate(float x, float y, float z, float angle)
+{
+    float tmp_x,tmp_y;
+
+    tmp_x = x;
+    tmp_y = y;
+    x = cos(angle) * tmp_x - sin(angle) * tmp_y;
+    y = sin(angle) * tmp_x + cos(angle) * tmp_y;
+    z = -z; 
+}
+
+
+
+
 int	main(void)
 {
 	void	*mlx;
 	void	*mlx_win;
 	t_img	img;
 	t_data	cord;
+    // t_fdf_opdata opo;
 
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "MinilibX");
 	img.img = mlx_new_image(mlx, 1280, 720);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	img.color = 255;
-	cord.x1 = 200;
-	cord.y1 = 200;
-    cord.x2 = 150;
-    cord.y2 = 300;
-    draw_line(&img, cord);
-    mlx_put_image_to_window(mlx, mlx_win, img.img, 400, 200);
-    cord.x1 = 200;
-	cord.y1 = 200;
-    cord.x2 = 100;
-    cord.y2 = 280;
-    draw_line(&img, cord);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 400, 200);
+    // while(mlx_hook(mlx_win, KEY_PRESS, KEY_PRESS_MASK, win_hooks, opo))
+    //     opo.angle += 10;
+    int len = 10;
+    int hight = 8;
+    int x1,x2,y1,y2,z1,z2;
+    z1 = 0;
+    z2 = 0;
+	y1 = 0;
+    y2 = 0;
+    while(y2 < hight)
+    {
+        x1 = 0;
+        x2 = 1;
+        while(x2 < len)
+        {
+            z_rotate(x1, y1, 20, 5);
+	        cord.x1 = x1 * X_GAP;
+	        cord.y1 = y1 * Y_GAP;
+            z_rotate(x2, y2, 10, 5);
+            cord.x2 = x2 * X_GAP;
+            cord.y2 = y2 * Y_GAP;
+            draw_line(&img, cord);
+            mlx_put_image_to_window(mlx, mlx_win, img.img, 400, 200);
+            x1++;
+            x2++;
+        }
+        y1++;
+        y2++;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+
+    x1 = 0;
+    x2 = 0;
+    while(x2 < len)
+    {
+        y1 = 0;
+        y2 = 1;
+        while(y2 < hight)
+        {
+            printf("%d\n", cord.x1);
+            printf("%d\n", cord.y1);
+            printf("%d\n", cord.x2);
+            printf("%d\n", cord.y2);
+            z_rotate(x1, y1, 30, 5);
+            z_rotate(x2, y2, 20, 5);
+            printf("----------------------\n");
+            printf("%d\n", cord.x1);
+            printf("%d\n", cord.y1);
+            printf("%d\n", cord.x2);
+            printf("%d\n\n\n", cord.y2);
+	        cord.x1 = x1 * X_GAP;
+	        cord.y1 = y1 * Y_GAP;
+            cord.x2 = x2 * X_GAP;
+            cord.y2 = y2 * Y_GAP;
+            draw_line(&img, cord);
+            mlx_put_image_to_window(mlx, mlx_win, img.img, 400, 200);
+            y1++;
+            y2++;
+        }
+        x1++;
+        x2++;
+    }
+
+
+    // cord.x1 = 10;
+	// cord.y1 = 10;
+    // cord.x2 = 10;
+    // cord.y2 = 30;
+    // draw_line(&img, cord);
+	// mlx_put_image_to_window(mlx, mlx_win, img.img, 400, 200);
 	mlx_loop(mlx);
 }
 
