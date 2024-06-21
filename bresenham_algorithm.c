@@ -24,37 +24,18 @@ void    mlx_pixel_put_img(t_img *img, int x, int y, int color)
 
 void draw_line(t_img *img, t_data cord) 
 {
-    int tx = cord.x2 - cord.x1;
-    int ty = cord.y2 - cord.y1;
-    int dx = abs(cord.x2 - cord.x1);
-    int dy = abs(cord.y2 - cord.y1);
-    int p = 2 * dy - dx;
-    int x = cord.x1, y = cord.y1;
-	int i = 0;
+    t_line line;
+    line.tx= cord.x2 - cord.x1;
+    line.ty = cord.y2 - cord.y1;
+    line.dx = abs(cord.x2 - cord.x1);
+    line.dy = abs(cord.y2 - cord.y1);
+    line.p = 2 * line.dy - line.dx;
+    line.x = cord.x1;
+    line.y = cord.y1;
 
     // t_point point;
 	if(dx > dy)
-    {
-        i = -1;
-        while(++i < dx)
-        {
-            if(tx > 0)
-                x++;
-            else
-                x--;
-            if(p < 0)
-              p = p + (2 * dy);
-            else
-            {
-                p = p + (2 * dy) - (2 * dx);
-                if(ty > 0)
-                    y++;
-                else
-                    y--;
-            }
-            mlx_pixel_put_img(img, x, y, img->color);
-        }
-    }
+        draw_for_dx()
 
     else
     {
@@ -67,7 +48,7 @@ void draw_line(t_img *img, t_data cord)
                 y++;
             else
                 y--;
-            if(p < 0 && tx > 0)
+            if(p < 0 && tx >= 0)
               p = p + (2 * tx);
             else
             {
@@ -80,5 +61,30 @@ void draw_line(t_img *img, t_data cord)
             mlx_pixel_put_img(img, x, y, img->color);
             i++;
         }
+    }
+}
+
+static void draw_for_dx()
+{
+    int i;
+
+    i = -1;
+    while(++i < dx)
+    {
+        if(tx > 0)
+            x++;
+        else
+            x--;
+        if(p < 0)
+          p = p + (2 * dy);
+        else
+        {
+            p = p + (2 * dy) - (2 * dx);
+        if(ty > 0)
+                y++;
+            else
+                y--;
+        }
+        mlx_pixel_put_img(img, x, y, img->color);
     }
 }

@@ -22,6 +22,18 @@ void	free_matrix(char **str)
 	}
 	free(str);
 }
+void	free_matrix(int **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
 
 int	is_digit(char h)
 {

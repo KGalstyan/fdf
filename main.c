@@ -2,8 +2,6 @@
 
 int main(int argc, char **argv)
 {
-    t_all a;
-
     if(argc == 2)
     {
         if(!correct_file(argv[1]))
@@ -11,9 +9,8 @@ int main(int argc, char **argv)
         else
         {
             printf("ALL RIGHT BRO");
-            get_mlx_data(&a);
-        } 
-        // reading_file(*argv);
+            draw_map(argv[1]);
+        }
     }
     else
         printf("please enter file name\n");

@@ -40,6 +40,13 @@ typedef struct  s_data
 
 }               t_data;
 
+typedef struct  s_data_fl
+{
+    float x;
+    float y;
+
+}               t_data_fl;
+
 typedef struct s_point
 {
     int x;
@@ -48,11 +55,15 @@ typedef struct s_point
     // int color;
 }               t_point;
 
-typedef struct s_fdf_opdata
+typedef struct s_operators
 {
-    int angle;
+    float angle;
+    float x_izo;
+    float y_izo;
+    float z_izo;
 
-}               t_fdf_opdata;
+}               t_operators;
+
 
 // typedef struct  s_line
 // {

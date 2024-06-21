@@ -8,6 +8,9 @@
 
 # define KEY_PRESS 2
 # define KEY_PRESS_MASK 1
+# define KEY_PRESS_Z 6
+# define KEY_PRESS_X 7
+# define KEY_PRESS_Y 16
 
 # define DESTROY_NOTIFY 17
 # define NO_EVENT_MASK 0
@@ -23,20 +26,20 @@
 #include <mlx.h>
 
 
-typedef struct s_point
-{
-    int x;
-    int y;
-    int z;
-}               t_point;
+// typedef struct s_point
+// {
+//     int x;
+//     int y;
+//     int z;
+// }               t_point;
 
 
-typedef struct s_all
-{
-    void *mlx;
-    void *mlx_win;
+// typedef struct s_all
+// {
+//     void *mlx;
+//     void *mlx_win;
 
-}              t_all;
+// }              t_all;
 
 typedef struct s_img
 {
@@ -58,20 +61,33 @@ typedef struct  s_data
 
 }               t_data;
 
-typedef struct s_map
+typedef struct s_line
 {
-    t_point p1;
-    t_point p2;
-    int **z_value;
+    int tx;
+    int ty;
+    int dx;
+    int dy;
+    int p;
+}               t_line;
 
-}               t_map;
+// typedef struct s_map
+// {
+//     t_point p1;
+//     t_point p2;
+//     int **z_value;
 
-typedef struct s_map
-{
-    int len;
-    int hight;
-    int **z_value;
-}               t_point;
+// }               t_map;
+
+// typedef struct s_map
+// {
+//     int len;
+//     int hight;
+//     int **z_value;
+// }               t_point;
+
+
+
+
 
 
 
@@ -98,9 +114,11 @@ int	is_digit(char h);
 
 
 //for drawing
-void  isometric(int x, int y, int z);
+
 
 //mlx graphic
 void get_mlx_data(t_all *a);
+int win_hooks(int keycode, t_all *a);
+
 
 #endif

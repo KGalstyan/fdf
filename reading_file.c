@@ -1,6 +1,19 @@
 #include "fdf.h"
 
 
+int *get_z_value(char *str, int len)
+{
+    char **str_spl;
+    int 
+    int i = 0;
+    int j = 0;
+
+    str_spl = ft_split(str);
+    while(str_spl[i])
+    {
+    } 
+}
+
 int get_len(char *str)
 {
     int len;
@@ -14,21 +27,37 @@ int get_len(char *str)
     return(len);
 }
 
-int *read_file(char *av)
+int get_hight(int fd)
+{
+    char *str;
+    int hight;
+
+    hight = 0;
+    str = get_next_line(fd);
+    while(str)
+    {
+        hight++;
+    }
+    return(hight);
+}
+
+int **read_file(char *av)
 {
     int fd;
     char *str;
-    char **split_str;
     int len;
     int hight;
-    int *z_value;
+    int **z_value;
 
     fd = open(av, O_RDONLY);
     str = get_next_line(fd);
+    hight = get_hight(fd);
     len = get_len(str);
     printf(len);
+    z_value = (int **)malloc(sizeof(int *) * (hight + 1));
     while(str)
     {
-        get_z_value()
+        z_value[i] = (int *)malloc(sizeof(int) * (len + 1));
+        get_z_value(len);
     }
 }
