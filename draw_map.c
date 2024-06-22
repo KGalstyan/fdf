@@ -7,3 +7,9 @@ void    draw_map(char *av)
     z_value = read_file(av);
     
 }
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
