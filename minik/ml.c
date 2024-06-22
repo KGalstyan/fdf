@@ -138,17 +138,20 @@ int	main(void)
     // while(mlx_hook(mlx_win, KEY_PRESS, KEY_PRESS_MASK, win_hooks, opo))
     //     opo.angle += 10;
     int len = 19;
-    int hight = 9;
-        int data[10][19] = {
+    int hight = 12;
+        int data[13][19] = {
         {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0},
         {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0},
-        {0,  0, 10, 10,  0,  0, 10, 10,  0,  0,  0, 10, 10, 10, 10, 10,  0,  0,  0},
-        {0,  0, 10, 10,  0,  0, 10, 10,  0,  0,  0,  0,  0,  0,  0, 10, 10,  0,  0},
-        {0,  0, 10, 10,  0,  0, 10, 10,  0,  0,  0,  0,  0,  0,  0, 10, 10,  0,  0},
-        {0,  0, 10, 10, 10, 10, 10, 10,  0,  0,  0,  0, 10, 10, 10, 10,  0,  0,  0},
-        {0,  0,  0, 10, 10, 10, 10, 10,  0,  0,  0, 10, 10,  0,  0,  0,  0,  0,  0},
-        {0,  0,  0,  0,  0,  0, 10, 10,  0,  0,  0, 10, 10,  0,  0,  0,  0,  0,  0},
-        {0,  0,  0,  0,  0,  0, 10, 10,  0,  0,  0, 10, 10, 10, 10, 10,  0,  0,  0}};
+        {0,  0, -10, -10,  0,  0, -10, -10,  0,  0,  0, -10, -10, -10, -10, -10,  0,  0,  0},
+        {0,  0, -10, -10,  0,  0, -10, -10,  0,  0,  0,  0,  0,  0,  0, -10, -10,  0,  0},
+        {0,  0, -10, -10,  0,  0, -10, -10,  0,  0,  0,  0,  0,  0,  0, -10, -10,  0,  0},
+        {0,  0, -10, -10, -10, -10, -10, -10,  0,  0,  0,  0, -10, -10, -10, -10,  0,  0,  0},
+        {0,  0,  0, -10, -10, -10, -10, -10,  0,  0,  0, -10, -10,  0,  0,  0,  0,  0,  0},
+        {0,  0,  0,  0,  0,  0, -10, -10,  0,  0,  0, -10, -10,  0,  0,  0,  0,  0,  0},
+        {0,  0,  0,  0,  0,  0, -10, -10,  0,  0,  0, -10, -10, -10, -10, -10,  0,  0,  0},
+        {0,  0,  0,  0,  0,  0, -10, -10,  0,  0,  0, -10, -10, -10, -10, -10,  0,  0,  0},
+        {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0},
+        {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}};
     int x1,x2,y1,y2,z1,z2;
     z1 = 80;
     z2 = 50;
@@ -162,7 +165,7 @@ int	main(void)
         {
             cordfloat.x = x1 * X_GAP;
 	        cordfloat.y = y1 * Y_GAP;
-            cordfloat.z = data[y1][x1];
+            cordfloat.z = data[y1][x1] + 20;
             z_rotate(&cordfloat, 45);
             x_rotate(&cordfloat, 30);
             cord.x1 = cordfloat.x + 300;   
@@ -171,7 +174,7 @@ int	main(void)
             //z_rotate(cord.x1, cord.y1, 10, 10);
             cordfloat.x = x2 * X_GAP;
 	        cordfloat.y = y2 * Y_GAP;
-            cordfloat.z = data[y2][x2];
+            cordfloat.z = data[y2][x2] + 20;
             z_rotate(&cordfloat, 45);
             x_rotate(&cordfloat, 30);
             cord.x2 = cordfloat.x + 300;   
@@ -199,7 +202,7 @@ int	main(void)
         {
 	        cordfloat.x = x1 * X_GAP;
 	        cordfloat.y = y1 * Y_GAP;
-            cordfloat.z = data[y1][x1];
+            cordfloat.z = data[y1][x1] + 20;
             z_rotate(&cordfloat, 45);
             x_rotate(&cordfloat, 30);
             cord.x1 = cordfloat.x + 300;   
@@ -210,7 +213,7 @@ int	main(void)
             //z_rotate(cord.x1, cord.y1, 10, 10);
             cordfloat.x = x2 * X_GAP;
 	        cordfloat.y = y2 * Y_GAP;
-            cordfloat.z = data[y2][x2];
+            cordfloat.z = data[y2][x2] + 20;
             z_rotate(&cordfloat, 45);
             x_rotate(&cordfloat, 30);
             cord.x2 = cordfloat.x + 300;   
