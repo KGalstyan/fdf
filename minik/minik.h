@@ -44,6 +44,7 @@ typedef struct  s_data_fl
 {
     float x;
     float y;
+    float z;
 
 }               t_data_fl;
 
