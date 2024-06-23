@@ -22,12 +22,12 @@ void	free_matrix(char **str)
 	}
 	free(str);
 }
-void	free_matrix_int(int **str)
+void	free_matrix_int(int **str, int hight)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (i < hight)
 	{
 		free(str[i]);
 		i++;

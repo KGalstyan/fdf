@@ -56,7 +56,7 @@ typedef struct  s_data
 {
     int len;
     int hight;
-    int **z_value;
+    int **z_values;
 
 }               t_data;
 
@@ -69,8 +69,16 @@ typedef struct s_line
     int p;
 }               t_line;
 
-//void read_file(char *av, t_data *param);
+
+
 int    draw_map(char *av);
+int **get_z_value(char *str, t_data *param);
+
+
+
+
+
+
 // typedef struct s_map
 // {
 //     t_point p1;
@@ -102,7 +110,7 @@ char	**ft_split(char const *s, char c);
 
 //utils
 void	free_matrix(char **str);
-
+void	free_matrix_int(int **str, int len);
 //correct file name
 int correct_file(char *av);
 int	is_digit(char h);

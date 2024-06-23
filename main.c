@@ -14,6 +14,6 @@ int main(int argc, char **argv)
     }
     else
         printf("please enter file name\n");
-    // system("leaks fdf");
+    //system("leaks fdf");
     return(0);
 }
