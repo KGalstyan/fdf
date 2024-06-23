@@ -100,7 +100,6 @@ char	*ft_strdup(const char *s);
 long long	ft_atoi(const char *nptr);
 char	**ft_split(char const *s, char c);
 
-
 //utils
 void	free_matrix(char **str);
 

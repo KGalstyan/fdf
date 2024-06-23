@@ -33,19 +33,26 @@ void reading_file(char *av, t_data *param)
     int fd;
     char *str;
     char *tmp;
+    char *tmp2;
 
+    str = "";
     param->hight = 0;
-    tmp = NULL;
-    fd = open(av, O_RDONLY);
-    str = get_next_line(fd);
-    param->len = get_len(str);
-    printf("len = %d\n", param->len);
     // z_value = (int **)malloc(sizeof(int *) * (hight + 1));
-    while(str)
+    fd = open(av, O_RDONLY);
+    while(1)
     {
-        printf("%s", str);
-        str = get_next_line(fd);
+        tmp = get_next_line(fd);
+        if(!tmp)
+            break;
+        param->len = get_len(tmp);
+        tmp2 = str;
+        str = ft_strjoin(tmp2, tmp);
+        //printf("%s", str);
         param->hight++;
+        free(tmp);
     }
+    printf("len = %d\n", param->len);
+    printf("str == %s", str);
     printf("hight is == %d", param->hight);
+    free(str);
 }
