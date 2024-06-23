@@ -2,7 +2,7 @@
 #define FDF_H
 
 #define OFF_ESC 53
-#define OFF_X 13
+#define OFF_X 17
 #define WIN_WIDTH 1280
 #define WIN_HEIGHT 720
 
@@ -54,10 +54,9 @@ typedef struct s_img
 
 typedef struct  s_data
 {
-    int x1;
-    int x2;
-    int y1;
-    int y2;
+    int len;
+    int hight;
+    int **z_value;
 
 }               t_data;
 
@@ -70,6 +69,8 @@ typedef struct s_line
     int p;
 }               t_line;
 
+//void read_file(char *av, t_data *param);
+int    draw_map(char *av);
 // typedef struct s_map
 // {
 //     t_point p1;
@@ -103,7 +104,6 @@ char	**ft_split(char const *s, char c);
 //utils
 void	free_matrix(char **str);
 
-
 //correct file name
 int correct_file(char *av);
 int	is_digit(char h);
@@ -111,14 +111,15 @@ int	is_digit(char h);
 //reading file
 // void reading_file(char *av);
 // int read_incert_file(char *str);
+void reading_file(char *av, t_data *param);
 
 
 //for drawing
 
 
 //mlx graphic
-void get_mlx_data(t_all *a);
-int win_hooks(int keycode, t_all *a);
+//void get_mlx_data(t_all *a);
+//int win_hooks(int keycode, t_all *a);
 
 
 #endif

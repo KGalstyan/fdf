@@ -44,11 +44,13 @@ static int correct_arguments(char *str)
     return(i);
 }
 
+
 int correct_file(char *av)
 {
     int fd;
     char *str;
     int len;
+    //int **z_values;
 
     if(!correct_file_name(av))
     {

@@ -22,7 +22,7 @@ void	free_matrix(char **str)
 	}
 	free(str);
 }
-void	free_matrix(int **str)
+void	free_matrix_int(int **str)
 {
 	int	i;
 

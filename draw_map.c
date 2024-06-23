@@ -1,15 +1,13 @@
 #include "fdf.h"
 
-void    draw_map(char *av)
+int    draw_map(char *av)
 {
-    int **z_value;
+    t_data param;
 
-    z_value = read_file(av);
-    
+    param.hight = 0;
+    reading_file(av, &param);
+    return(0);
 }
 
-
-#include <stdio.h>
-#include <stdlib.h>
 
 
