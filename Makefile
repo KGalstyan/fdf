@@ -1,7 +1,7 @@
 NAME = fdf
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address 
+CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address 
 
 MLX = -framework OpenGL -framework AppKit -lmlx
 

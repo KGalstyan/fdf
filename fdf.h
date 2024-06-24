@@ -55,6 +55,9 @@ typedef struct  s_data
     int len;
     int hight;
     int **z_values;
+    int angle_x;
+    int angle_y;
+    int angle_z;
 
 }               t_data;
 
@@ -148,6 +151,9 @@ void reading_file(char *av, t_data *param);
 void draw_line(t_img *img, t_point *cord);
 
 //mlx graphic
+
+int win_hooks(int keycode, t_mlx *mlxparams);
+int close_window(t_mlx *mlxparams);
 //void get_mlx_data(t_all *a);
 //int win_hooks(int keycode, t_all *a);
 

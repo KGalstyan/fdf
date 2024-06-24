@@ -44,8 +44,8 @@ void draw_all(t_data *param, t_img *img, t_mlx *mlxparams)
             cordfloat.z = param->z_values[y1][x1];
             z_rotate(&cordfloat, 45);
             x_rotate(&cordfloat, 30);
-            cord.x1 = cordfloat.x + 350;   
-	        cord.y1 = cordfloat.y + 200 + cordfloat.z;
+            cord.x1 = cordfloat.x + 900;   
+	        cord.y1 = cordfloat.y + 450 + cordfloat.z;
             // isometric(value);
             //z_rotate(cord.x1, cord.y1, 10, 10);
             cordfloat.x = x2 * X_GAP;
@@ -53,8 +53,8 @@ void draw_all(t_data *param, t_img *img, t_mlx *mlxparams)
             cordfloat.z = param->z_values[y2][x2];
             z_rotate(&cordfloat, 45);
             x_rotate(&cordfloat, 30);
-            cord.x2 = cordfloat.x + 350;   
-	        cord.y2 = cordfloat.y + 200 + cordfloat.z;
+            cord.x2 = cordfloat.x + 900;   
+	        cord.y2 = cordfloat.y + 450 + cordfloat.z;
             // isometric(cord.x2, cord.y2, z2);
             //z_rotate(cord.x1, cord.y1, 10, 10);
             draw_line(img, &cord);
@@ -81,8 +81,8 @@ void draw_all(t_data *param, t_img *img, t_mlx *mlxparams)
             cordfloat.z = param->z_values[y1][x1];
             z_rotate(&cordfloat, 45);
             x_rotate(&cordfloat, 30);
-            cord.x1 = cordfloat.x + 350;   
-	        cord.y1 = cordfloat.y + 200 + cordfloat.z;
+            cord.x1 = cordfloat.x + 900;   
+	        cord.y1 = cordfloat.y + 450 + cordfloat.z;
             printf("x1=%f\n", cordfloat.x);
             printf("y1=%f\n", cordfloat.y);
             //isometric(cord.x1, cord.y1, z1);
@@ -92,8 +92,8 @@ void draw_all(t_data *param, t_img *img, t_mlx *mlxparams)
             cordfloat.z = param->z_values[y2][x2];
             z_rotate(&cordfloat, 45);
             x_rotate(&cordfloat, 30);
-            cord.x2 = cordfloat.x + 350;   
-	        cord.y2 = cordfloat.y + 200 + cordfloat.z;
+            cord.x2 = cordfloat.x + 900;   
+	        cord.y2 = cordfloat.y + 450 + cordfloat.z;
             printf("x2=%f\n", cordfloat.x);
             printf("y2=%f\n", cordfloat.y);
             // isometric(cord.x2, cord.y2, z2);
@@ -124,6 +124,8 @@ void    draw_map(char *av)
     reading_file(av, &param);
     draw_all(&param, &img, &mlxparams);
     free_matrix_int(param.z_values, param.hight);
+    mlx_hook(mlxparams.mlx_win, KEY_PRESS, KEY_PRESS_MASK, win_hooks, &mlxparams);
+    mlx_hook(mlxparams.mlx_win, OFF_X, KEY_PRESS_MASK, close_window, &mlxparams);
     mlx_loop(mlxparams.mlx);
 }
 
