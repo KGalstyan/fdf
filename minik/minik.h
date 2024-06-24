@@ -7,7 +7,7 @@
 #include <mlx.h>
 
 #define OFF_ESC 53
-#define OFF_X 20
+#define OFF_X 17
 #define WIN_WIDTH 1280
 #define WIN_HEIGHT 720
 

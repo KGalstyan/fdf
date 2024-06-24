@@ -30,7 +30,9 @@ static int correct_arguments(char *str)
         j = 0;
         while(split_str[i][j] != '\n' && split_str[i][j] != '\0')
         {
-            if (!(is_digit(split_str[i][j])))
+            if (split_str[i][j] == '-' && is_digit(split_str[i][j+1]))
+                j++;
+            else if (!(is_digit(split_str[i][j])))
             {
                 printf("IS NOT DIGIT");
                 free_matrix(split_str);
@@ -40,6 +42,8 @@ static int correct_arguments(char *str)
         }
         i++;
     }
+    if(split_str[i-1][0] == '\n')
+        i--;
     free_matrix(split_str);
     return(i);
 }
@@ -82,5 +86,6 @@ int correct_file(char *av)
         free(str);
         str = get_next_line(fd);
     }
+    close(fd);
     return(1);
 }

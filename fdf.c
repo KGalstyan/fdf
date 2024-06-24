@@ -1,4 +1,4 @@
-#include "fdf.h"
+// #include "fdf.h"
 
 // void get_mlx_data(t_all *a)
 // {

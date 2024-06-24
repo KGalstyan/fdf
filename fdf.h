@@ -23,7 +23,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "./Get_next_line/get_next_line.h"
-#include <mlx.h>
+#include "mlx.h"
 
 
 // typedef struct s_point
@@ -41,16 +41,14 @@
 
 // }              t_all;
 
-typedef struct s_img
-{
-    void *img;
-    char *addr;
-    int bpp;
-    int size_line;
-    int endian;
-    int color;
-
-}              t_img;
+typedef struct	s_img {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+    int     color;
+}				t_img;
 
 typedef struct  s_data
 {
@@ -59,6 +57,25 @@ typedef struct  s_data
     int **z_values;
 
 }               t_data;
+
+typedef struct  s_data_fl
+{
+    float x;
+    float y;
+    float z;
+
+}               t_data_fl;
+
+typedef struct  s_point
+{
+    int x2;
+    int x1;
+    int y1;
+    int y2;
+    int z1;
+    int z2;
+
+}               t_point;
 
 typedef struct s_line
 {
@@ -69,9 +86,15 @@ typedef struct s_line
     int p;
 }               t_line;
 
+typedef struct s_mlx
+{
+    void	*mlx;
+	void	*mlx_win;
+}              t_mlx;
 
 
-int    draw_map(char *av);
+
+void    draw_map(char *av);
 int **get_z_value(char *str, t_data *param);
 
 
@@ -122,7 +145,7 @@ void reading_file(char *av, t_data *param);
 
 
 //for drawing
-
+void draw_line(t_img *img, t_point *cord);
 
 //mlx graphic
 //void get_mlx_data(t_all *a);

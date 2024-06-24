@@ -6,7 +6,7 @@
             "request": "launch",
             "name": "Debug",
             "program": "${workspaceFolder}/fdf",
-            "args": ["affa.fdf"],
+            "args": ["mars.fdf"],
             "cwd": "${workspaceFolder}"
         }
     ]

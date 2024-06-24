@@ -35,7 +35,7 @@ int get_len(char *str)
 
     split_str = ft_split(str, ' ');
     len = 0;
-    while(split_str[len])
+    while(split_str[len] && split_str[len][0] != '\n')
         len++;
     free_matrix(split_str);
     return(len);
@@ -89,6 +89,6 @@ void reading_file(char *av, t_data *param)
     }
 
 //////////////////////////////////////////////////////////////////
-    free_matrix_int(param->z_values, param->hight);
     free(str);
+    close(fd);
 }
