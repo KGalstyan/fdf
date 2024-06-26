@@ -23,6 +23,15 @@ void    mlx_pixel_put_img(t_img *img, int x, int y, int color)
 //     y = (tmp + y) * sin(value.angle) - z;
 // }
 
+void  isometric(t_data_fl *cordfloat)
+{
+    float tmp;
+
+    tmp = cordfloat->x;
+    cordfloat->x = (tmp - cordfloat->y) * cos(0.523599);
+    cordfloat->y = (tmp + cordfloat->y) * sin(0.523599) - cordfloat->z;
+}
+
 void draw_line(t_img *img, t_data *cord) 
 {
     int tx = cord->x2 - cord->x1;
@@ -47,11 +56,11 @@ void draw_line(t_img *img, t_data *cord)
               p = p + (2 * dy);
             else
             {
-                p = p + (2 * dy) - (2 * dx);
                 if(ty > 0)
                     y++;
                 else
                     y--;
+                p = p + (2 * dy) - (2 * dx);
             }
             mlx_pixel_put_img(img, x, y, img->color);
         }
@@ -62,20 +71,20 @@ void draw_line(t_img *img, t_data *cord)
         p = 2 * tx - ty;
         i = 0;
         mlx_pixel_put_img(img, x, y, img->color);
-        while(i < dy)
+        while(i < ty)
         {
-            if(ty > 0)
+            //if(ty > 0)
                 y++;
-            else
-                y--;
-            if(p < 0 && tx >= 0)
+            // else
+            //     y--;
+            if(p < 0 )//&& tx <= 0)
               p = p + (2 * tx);
             else
             {
-                if(tx > 0)
+                //if(tx > 0)
                     x++;
-                else
-                    x--;
+                //else
+                    //x--;
                 p = p + (2 * tx) - (2 * ty);
             }
             mlx_pixel_put_img(img, x, y, img->color);
@@ -84,41 +93,41 @@ void draw_line(t_img *img, t_data *cord)
     }
 }
 
-void z_rotate(t_data_fl *cordfloat, int angle)
-{
-    float tmp_x;
-    float tmp_y;
-    float tmp_z;
-    tmp_x = cordfloat->x;
-    tmp_y = cordfloat->y;
-    tmp_z = cordfloat->z;
-    cordfloat->x = cos(angle) * tmp_x - sin(angle) * tmp_y;
-    //printf("x == %f\n", cordfloat->x);
-    cordfloat->y = sin(angle) * tmp_x + cos(angle) * tmp_y;
-    cordfloat->z = sin(angle) * tmp_x + cos(angle) * tmp_y + tmp_z;
-    //printf("y ============ %f\n", cordfloat.y);
-}
+// void z_rotate(t_data_fl *cordfloat, int angle)
+// {
+//     float tmp_x;
+//     float tmp_y;
+//     float tmp_z;
+//     tmp_x = cordfloat->x;
+//     tmp_y = cordfloat->y;
+//     tmp_z = cordfloat->z;
+//     cordfloat->x = cos(angle) * tmp_x - sin(angle) * tmp_y;
+//     //printf("x == %f\n", cordfloat->x);
+//     cordfloat->y = sin(angle) * tmp_x + cos(angle) * tmp_y;
+//     cordfloat->z = sin(angle) * tmp_x + cos(angle) * tmp_y + tmp_z;
+//     //printf("y ============ %f\n", cordfloat.y);
+// }
 
-void x_rotate(t_data_fl *cordfloat, int angle)
-{
-    float tmp_y;
-    float tmp_z;
-    tmp_y = cordfloat->y;
-    tmp_z = cordfloat->z;
-    cordfloat->y = cos(angle) * tmp_y - sin(angle) * tmp_z;
-    cordfloat->z = sin(angle) * tmp_y + cos(angle) * tmp_z;
-}
+// void x_rotate(t_data_fl *cordfloat, int angle)
+// {
+//     float tmp_y;
+//     float tmp_z;
+//     tmp_y = cordfloat->y;
+//     tmp_z = cordfloat->z;
+//     cordfloat->y = cos(angle) * tmp_y - sin(angle) * tmp_z;
+//     cordfloat->z = sin(angle) * tmp_y + cos(angle) * tmp_z;
+// }
 
-void y_rotate(t_data_fl *cordfloat, int angle)
-{
-    float tmp_x;
-    float tmp_z;
+// void y_rotate(t_data_fl *cordfloat, int angle)
+// {
+//     float tmp_x;
+//     float tmp_z;
 
-    tmp_x = cordfloat->x;
-    tmp_z = cordfloat->z;
-    cordfloat->x = sin(angle) * tmp_x + cos(angle) * tmp_z;
-    cordfloat->z = cos(angle) * tmp_z - sin(angle) * tmp_x;
-}
+//     tmp_x = cordfloat->x;
+//     tmp_z = cordfloat->z;
+//     cordfloat->x = sin(angle) * tmp_x + cos(angle) * tmp_z;
+//     cordfloat->z = cos(angle) * tmp_z - sin(angle) * tmp_x;
+// }
 
 
 int	main(void)
@@ -164,23 +173,25 @@ int	main(void)
             cordfloat.x = x1 * X_GAP;
 	        cordfloat.y = y1 * Y_GAP;
             cordfloat.z = data[y1][x1];
-            z_rotate(&cordfloat, 45);
-            x_rotate(&cordfloat, 30);
+            // z_rotate(&cordfloat, 45);
+            isometric(&cordfloat);
+            // x_rotate(&cordfloat, 30);
             cord.x1 = cordfloat.x + 350;   
-	        cord.y1 = cordfloat.y + 200 + cordfloat.z;
+	        cord.y1 = cordfloat.y + 200;
             // isometric(value);
             //z_rotate(cord.x1, cord.y1, 10, 10);
             cordfloat.x = x2 * X_GAP;
 	        cordfloat.y = y2 * Y_GAP;
             cordfloat.z = data[y2][x2];
-            z_rotate(&cordfloat, 45);
-            x_rotate(&cordfloat, 30);
+            // z_rotate(&cordfloat, 45);
+            isometric(&cordfloat);
+            // x_rotate(&cordfloat, 30);
             cord.x2 = cordfloat.x + 350;   
-	        cord.y2 = cordfloat.y + 200 + cordfloat.z;
-            // isometric(cord.x2, cord.y2, z2);
+	        cord.y2 = cordfloat.y + 200;
+            // isometric(&cordfloat);
             //z_rotate(cord.x1, cord.y1, 10, 10);
             draw_line(&img, &cord);
-            mlx_put_image_to_window(mlx, mlx_win, img.img, 400, 200);
+            mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
             x1++;
             x2++;
         }
@@ -201,10 +212,11 @@ int	main(void)
 	        cordfloat.x = x1 * X_GAP;
 	        cordfloat.y = y1 * Y_GAP;
             cordfloat.z = data[y1][x1];
-            z_rotate(&cordfloat, 45);
-            x_rotate(&cordfloat, 30);
+            // z_rotate(&cordfloat, 45);
+            isometric(&cordfloat);
+            // x_rotate(&cordfloat, 30);
             cord.x1 = cordfloat.x + 350;   
-	        cord.y1 = cordfloat.y + 200 + cordfloat.z;
+	        cord.y1 = cordfloat.y + 200;
             printf("x1=%f\n", cordfloat.x);
             printf("y1=%f\n", cordfloat.y);
             //isometric(cord.x1, cord.y1, z1);
@@ -212,16 +224,18 @@ int	main(void)
             cordfloat.x = x2 * X_GAP;
 	        cordfloat.y = y2 * Y_GAP;
             cordfloat.z = data[y2][x2];
-            z_rotate(&cordfloat, 45);
-            x_rotate(&cordfloat, 30);
+            // z_rotate(&cordfloat, 45);
+            isometric(&cordfloat);
+            // x_rotate(&cordfloat, 30);
+
             cord.x2 = cordfloat.x + 350;   
-	        cord.y2 = cordfloat.y + 200 + cordfloat.z;
+	        cord.y2 = cordfloat.y + 200;
             printf("x2=%f\n", cordfloat.x);
             printf("y2=%f\n", cordfloat.y);
             // isometric(cord.x2, cord.y2, z2);
             // z_rotate(cord.x2, cord.y2, 10, 10);
             draw_line(&img, &cord);
-            mlx_put_image_to_window(mlx, mlx_win, img.img, 400, 200);
+            mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
             y1++;
             y2++;
         }

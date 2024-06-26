@@ -8,62 +8,79 @@ void    mlx_pixel_put_img(t_img *img, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
+static void draw_line_for_x(t_line *line, t_img *img)
+{
+    int i;
+    
+    i = -1;
+    while(++i < line->dx)
+    {
+        if(line->tx < 0)
+            line->x--;
+        else
+            line->x++;
+        if(line->p < 0)
+            line->p = line->p + (2 * line->dy);
+        else
+        {
+            if(line->ty < 0)
+                line->y--;
+            else
+                line->y++;
+            line->p = line->p + (2 * line->dy) - (2 * line->dx);
+        }
+        mlx_pixel_put_img(img, line->x, line->y, img->color);
+    }
+}
+
+static void draw_line_for_y(t_line *line, t_img *img)
+{
+    int i;
+
+    i = -1;
+    mlx_pixel_put_img(img, line->x, line->y, img->color);
+    while(++i < line->dy)
+    {
+        if(line->ty < 0)
+            line->y--;
+        else
+            line->y++;
+        if(line->p < 0)
+            line->p = line->p + (2 * line->dx);
+        else
+        {
+            if(line->tx < 0)
+                line->x--;
+            else
+                line->x++;
+            line->p = line->p + (2 * line->dx) - (2 * line->dy);
+        }
+        mlx_pixel_put_img(img, line->x, line->y, img->color);
+    }
+}   
+
+
 void draw_line(t_img *img, t_point *cord) 
 {
-    int tx = cord->x2 - cord->x1;
-    int ty = cord->y2 - cord->y1;
-    int dx = abs(cord->x2 - cord->x1);
-    int dy = abs(cord->y2 - cord->y1);
-    int p = 2 * dy - dx;
-    int x = cord->x1, y = cord->y1;
-	int i = 0;
+    t_line line;
 
-	if(dx > dy)
+    line.tx = cord->x2 - cord->x1;
+    line.ty = cord->y2 - cord->y1;
+    line.dx = abs(cord->x2 - cord->x1);
+    line.dy = abs(cord->y2 - cord->y1);
+    line.p = 2 * line.dy - line.dx;
+    line.x = cord->x1, line.y = cord->y1;
+
+    /////less
+	if(line.dx > line.dy)
     {
-        i = -1;
-        while(++i < dx)
-        {
-            if(tx > 0)
-                x++;
-            else
-                x--;
-            if(p < 0)
-              p = p + (2 * dy);
-            else
-            {
-                p = p + (2 * dy) - (2 * dx);
-                if(ty > 0)
-                    y++;
-                else
-                    y--;
-            }
-            mlx_pixel_put_img(img, x, y, img->color);
-        }
+        line.p = 2 * line.dy - line.dx;
+        draw_line_for_x(&line, img);
     }
-
+    ////big
     else
     {
-        p = 2 * tx - ty;
-        i = 0;
-        mlx_pixel_put_img(img, x, y, img->color);
-        while(i < dy)
-        {
-            if(ty > 0)
-                y++;
-            else
-                y--;
-            if(p < 0 && tx >= 0)
-              p = p + (2 * tx);
-            else
-            {
-                if(tx > 0)
-                    x++;
-                else
-                    x--;
-                p = p + (2 * tx) - (2 * ty);
-            }
-            mlx_pixel_put_img(img, x, y, img->color);
-            i++;
-        }
+        line.p = 2 * line.dx - line.dy;
+        draw_line_for_y(&line, img);
     }
 }

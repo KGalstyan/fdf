@@ -3,8 +3,8 @@
 
 #define OFF_ESC 53
 #define OFF_X 17
-#define WIN_WIDTH 1280
-#define WIN_HEIGHT 720
+#define WIN_WIDTH 1920
+#define WIN_HEIGHT 1080
 
 # define KEY_PRESS 2
 # define KEY_PRESS_MASK 1
@@ -25,21 +25,6 @@
 #include "./Get_next_line/get_next_line.h"
 #include "mlx.h"
 
-
-// typedef struct s_point
-// {
-//     int x;
-//     int y;
-//     int z;
-// }               t_point;
-
-
-// typedef struct s_all
-// {
-//     void *mlx;
-//     void *mlx_win;
-
-// }              t_all;
 
 typedef struct	s_img {
 	void	*img;
@@ -75,8 +60,6 @@ typedef struct  s_point
     int x1;
     int y1;
     int y2;
-    int z1;
-    int z2;
 
 }               t_point;
 
@@ -87,6 +70,8 @@ typedef struct s_line
     int dx;
     int dy;
     int p;
+    int x;
+    int y;
 }               t_line;
 
 typedef struct s_mlx
