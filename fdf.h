@@ -1,10 +1,22 @@
-#ifndef FDF_H
-#define FDF_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kgalstya <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/27 14:47:15 by kgalstya          #+#    #+#             */
+/*   Updated: 2024/06/27 16:41:54 by kgalstya         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#define OFF_ESC 53
-#define OFF_X 17
-#define WIN_WIDTH 1920
-#define WIN_HEIGHT 1080
+#ifndef FDF_H
+# define FDF_H
+
+# define OFF_ESC 53
+# define OFF_X 17
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
 
 # define KEY_PRESS 2
 # define KEY_PRESS_MASK 1
@@ -15,113 +27,108 @@
 # define DESTROY_NOTIFY 17
 # define NO_EVENT_MASK 0
 
-#define X_GAP 5
-#define Y_GAP 5
-#define Z_GAP 5
+# define X_GAP 25
+# define Y_GAP 25
+# define Z_GAP 25
 
-#include <unistd.h>
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
-#include "./Get_next_line/get_next_line.h"
-#include "mlx.h"
+# include "./Get_next_line/get_next_line.h"
+# include "mlx.h"
+# include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-
-typedef struct	s_img {
+typedef struct s_img
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-    int     color;
-}				t_img;
+	int		color;
+}			t_img;
 
-typedef struct  s_data
+typedef struct s_data
 {
-    int len;
-    int hight;
-    int **z_values;
-    int center_x;
-    int center_y;
+	int		len;
+	int		hight;
+	int		**z_values;
+    int     gap;
+	int		center_x;
+	int		center_y;
 
-}               t_data;
+}			t_data;
 
-typedef struct  s_data_fl
+typedef struct s_data_fl
 {
-    float x;
-    float y;
-    float z;
+	float	x;
+	float	y;
+	float	z;
 
-}               t_data_fl;
+}			t_data_fl;
 
-typedef struct  s_point
+typedef struct s_point
 {
-    int x2;
-    int x1;
-    int y1;
-    int y2;
+	int		x2;
+	int		x1;
+	int		y1;
+	int		y2;
 
-}               t_point;
+}			t_point;
 
 typedef struct s_line
 {
-    int tx;
-    int ty;
-    int dx;
-    int dy;
-    int p;
-    int x;
-    int y;
-}               t_line;
+	int		tx;
+	int		ty;
+	int		dx;
+	int		dy;
+	int		p;
+	int		x;
+	int		y;
+}			t_line;
 
 typedef struct s_mlx
 {
-    void	*mlx;
+	void	*mlx;
 	void	*mlx_win;
-    // int     step_right;
-    // int     step_down;
-    // int angle_x;
-    // int angle_y;
-    // int angle_z;
-}              t_mlx;
+	// int     step_right;
+	// int     step_down;
+	// int angle_x;
+	// int angle_y;
+	// int angle_z;
+}			t_mlx;
 
+void		draw_map(char *av);
+int			**get_z_value(char *str, t_data *param);
 
-
-void    draw_map(char *av);
-int **get_z_value(char *str, t_data *param);
-
-
-
-//libft
-int	ft_strcmp(const char *s1, const char *s2);
-int	ft_strlen(const char *s);
-char	*ft_substr(char const *s, int start, int len);
-char	*ft_strdup(const char *s);
+// libft
+int			ft_strcmp(const char *s1, const char *s2);
+int			ft_strlen(const char *s);
+char		*ft_substr(char const *s, int start, int len);
+char		*ft_strdup(const char *s);
 long long	ft_atoi(const char *nptr);
-char	**ft_split(char const *s, char c);
+char		**ft_split(char const *s, char c);
 
-//utils
-void	free_matrix(char **str);
-void	free_matrix_int(int **str, int len);
-//correct file name
-int correct_file(char *av);
-int	is_digit(char h);
+// utils
+void		free_matrix(char **str);
+void		free_matrix_int(int **str, int len);
+// correct file name
+int			correct_file(char *av);
+int			is_digit(char h);
 
-//reading file
+// reading file
 // void reading_file(char *av);
 // int read_incert_file(char *str);
-void reading_file(char *av, t_data *param);
+void		reading_file(char *av, t_data *param);
 
+// for drawing
+void		draw_line(t_img *img, t_point *cord);
 
-//for drawing
-void draw_line(t_img *img, t_point *cord);
+// mlx graphic
 
-//mlx graphic
-
-int win_hooks(int keycode, t_mlx *mlxparams);
-int close_window(t_mlx *mlxparams);
-//void get_mlx_data(t_all *a);
-//int win_hooks(int keycode, t_all *a);
-
+int			win_hooks(int keycode, t_mlx *mlxparams);
+int			close_window(t_mlx *mlxparams);
+// void get_mlx_data(t_all *a);
+// int win_hooks(int keycode, t_all *a);
 
 #endif
