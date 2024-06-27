@@ -1,54 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_putptr_len.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgalstya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 17:12:44 by kgalstya          #+#    #+#             */
-/*   Updated: 2024/06/27 17:19:03 by kgalstya         ###   ########.fr       */
+/*   Created: 2024/02/19 17:27:52 by kgalstya          #+#    #+#             */
+/*   Updated: 2024/02/19 17:27:56 by kgalstya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "ft_printf.h"
 
-int	ft_strlen(const char *s)
+int	alo(unsigned long long p)
 {
-	int	i;
+	int	len;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	len = 0;
+	if (p >= 16)
+		len += alo(p / 16);
+	len += ft_putchar_len("0123456789abcdef"[p % 16]);
+	return (len);
 }
 
-void	free_matrix(char **str)
+int	ft_putptr_len(unsigned long long p)
 {
-	int	i;
+	int	len;
 
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
+	len = 0;
+	len += ft_putstr_len("0x");
+	len += alo(p);
+	return (len);
 }
 
-void	free_matrix_int(int **str, int hight)
-{
-	int	i;
+// int main()
+// {
+// 	int a;
 
-	i = 0;
-	while (i < hight)
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
-int	is_digit(char h)
-{
-	return (h >= '0' && h <= '9');
-}
+// 	a = 0;
+// 	ft_putptr_len(1555);
+// 	printf("\n%p\n", 1555);
+// 	return(0);
+// }

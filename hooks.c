@@ -6,7 +6,7 @@
 /*   By: kgalstya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:36:30 by kgalstya          #+#    #+#             */
-/*   Updated: 2024/06/27 14:38:39 by kgalstya         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:31:15 by kgalstya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	win_hooks(int keycode, t_mlx *mlxparams)
 	{
 		mlx_clear_window(mlxparams->mlx, mlxparams->mlx_win);
 		mlx_destroy_window(mlxparams->mlx, mlxparams->mlx_win);
-		system("leaks fdf");
+		// system("leaks fdf");
 		exit(0);
 	}
 	return (0);
@@ -28,7 +28,7 @@ int	close_window(t_mlx *mlxparams)
 {
 	mlx_clear_window(mlxparams->mlx, mlxparams->mlx_win);
 	mlx_destroy_window(mlxparams->mlx, mlxparams->mlx_win);
-	system("leaks fdf");
+	// system("leaks fdf");
 	exit(0);
 	return (0);
 }

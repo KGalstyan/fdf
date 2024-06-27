@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgalstya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 14:34:31 by kgalstya          #+#    #+#             */
-/*   Updated: 2024/06/27 17:34:28 by kgalstya         ###   ########.fr       */
+/*   Created: 2024/02/06 17:15:58 by kgalstya          #+#    #+#             */
+/*   Updated: 2024/02/19 17:28:10 by kgalstya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_putstr_len(char *s)
 {
-	if (argc == 2)
+	int	i;
+
+	if (!s)
 	{
-		if (!correct_file(argv[1]))
-		{
-			ft_printf("Something wrong with file !?\n");
-			// system("leaks fdf");
-			exit(1);
-		}
-		else
-			draw_map(argv[1]);
+		write(1, "(null)", 6);
+		return (6);
 	}
-	else
-		ft_printf("please enter file name\n");
-	return (0);
+	i = 0;
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+	return (i);
 }
+/*
+int	main(void)
+{
+	ft_putstr_len("ash\na");
+	return(0);
+}
+*/

@@ -6,7 +6,7 @@
 /*   By: kgalstya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:40:44 by kgalstya          #+#    #+#             */
-/*   Updated: 2024/06/27 16:41:01 by kgalstya         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:47:55 by kgalstya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	mlx_pixel_put_img(t_img *img, int x, int y, int color)
 {
 	char	*dst;
-	
+
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
@@ -41,7 +41,7 @@ static void	draw_line_for_x(t_line *line, t_img *img)
 				line->y++;
 			line->p = line->p + (2 * line->dy) - (2 * line->dx);
 		}
-		if((line->x < 1920 && line->x > 0) && (line->y > 0 && line->y < 1080))
+		if ((line->x < 1920 && line->x > 0) && (line->y > 0 && line->y < 1080))
 			mlx_pixel_put_img(img, line->x, line->y, img->color);
 	}
 }
@@ -51,7 +51,7 @@ static void	draw_line_for_y(t_line *line, t_img *img)
 	int	i;
 
 	i = -1;
-	if((line->x < 1920 && line->x > 0) && (line->y > 0 && line->y < 1080))
+	if ((line->x < 1920 && line->x > 0) && (line->y > 0 && line->y < 1080))
 		mlx_pixel_put_img(img, line->x, line->y, img->color);
 	while (++i < line->dy)
 	{
@@ -69,7 +69,7 @@ static void	draw_line_for_y(t_line *line, t_img *img)
 				line->x++;
 			line->p = line->p + (2 * line->dx) - (2 * line->dy);
 		}
-		if((line->x < 1920 && line->x > 0) && (line->y > 0 && line->y < 1080))
+		if ((line->x < 1920 && line->x > 0) && (line->y > 0 && line->y < 1080))
 			mlx_pixel_put_img(img, line->x, line->y, img->color);
 	}
 }

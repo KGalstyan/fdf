@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgalstya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 14:34:31 by kgalstya          #+#    #+#             */
-/*   Updated: 2024/06/27 17:34:28 by kgalstya         ###   ########.fr       */
+/*   Created: 2024/02/06 17:50:28 by kgalstya          #+#    #+#             */
+/*   Updated: 2024/02/19 17:26:40 by kgalstya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_putchar_len(char c)
 {
-	if (argc == 2)
-	{
-		if (!correct_file(argv[1]))
-		{
-			ft_printf("Something wrong with file !?\n");
-			// system("leaks fdf");
-			exit(1);
-		}
-		else
-			draw_map(argv[1]);
-	}
-	else
-		ft_printf("please enter file name\n");
-	return (0);
+	int	len;
+
+	len = 0;
+	write(1, &c, 1);
+	len++;
+	return (len);
 }
