@@ -15,8 +15,9 @@
 # define DESTROY_NOTIFY 17
 # define NO_EVENT_MASK 0
 
-#define X_GAP 25
-#define Y_GAP 25
+#define X_GAP 5
+#define Y_GAP 5
+#define Z_GAP 5
 
 #include <unistd.h>
 #include <stdio.h>
@@ -40,9 +41,8 @@ typedef struct  s_data
     int len;
     int hight;
     int **z_values;
-    int angle_x;
-    int angle_y;
-    int angle_z;
+    int center_x;
+    int center_y;
 
 }               t_data;
 
@@ -78,36 +78,17 @@ typedef struct s_mlx
 {
     void	*mlx;
 	void	*mlx_win;
+    // int     step_right;
+    // int     step_down;
+    // int angle_x;
+    // int angle_y;
+    // int angle_z;
 }              t_mlx;
 
 
 
 void    draw_map(char *av);
 int **get_z_value(char *str, t_data *param);
-
-
-
-
-
-
-// typedef struct s_map
-// {
-//     t_point p1;
-//     t_point p2;
-//     int **z_value;
-
-// }               t_map;
-
-// typedef struct s_map
-// {
-//     int len;
-//     int hight;
-//     int **z_value;
-// }               t_point;
-
-
-
-
 
 
 

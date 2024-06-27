@@ -28,7 +28,7 @@ static int correct_arguments(char *str)
             return(0);
         }
         j = 0;
-        while(split_str[i][j] != '\n' && split_str[i][j] != '\0')
+        while(split_str[i][j] != '\n' && split_str[i][j] != '\0' && split_str[i][j] != ',')
         {
             if (split_str[i][j] == '-' && is_digit(split_str[i][j+1]))
                 j++;

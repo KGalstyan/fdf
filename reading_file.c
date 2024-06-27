@@ -10,7 +10,7 @@ int **get_z_value(char *str,t_data *param)
     int j = 0;
 
     str_spl_line = ft_split(str, '\n');
-    z_values = (int **)malloc(sizeof(int *) * (param->hight)); 
+    z_values = (int **)malloc(sizeof(int *) * (param->hight`)); 
     while(str_spl_line[i])
     {
         j = 0;
@@ -49,8 +49,8 @@ void reading_file(char *av, t_data *param)
     char *tmp;
     char *tmp2;
     ////////////////////////
-    int x = 0;
-    int y = 0;
+    //int x = 0;
+    //int y = 0;
     ////////////////////////
 
     str = "";
@@ -69,24 +69,24 @@ void reading_file(char *av, t_data *param)
         param->hight++;
         free(tmp);
     }
-    printf("len = %d\n", param->len);
+    //printf("len = %d\n", param->len);
     //printf("str == %s", str);
     param->z_values = get_z_value(str, param);
-    printf("hight is == %d", param->hight);
+    //printf("hight is == %d", param->hight);
 
 //////////////////////////////////////////////////////////////////
 
-    while(y < param->hight)
-    {
-        x = 0;
-        while(x < param->len)
-        {
-            printf("%d", param->z_values[y][x]);
-            x++;
-        }
-        printf("\n");
-        y++;
-    }
+    // while(y < param->hight)
+    // {
+    //     x = 0;
+    //     while(x < param->len)
+    //     {
+    //         printf("%d", param->z_values[y][x]);
+    //         x++;
+    //     }
+    //     printf("\n");
+    //     y++;
+    // }
 
 //////////////////////////////////////////////////////////////////
     free(str);

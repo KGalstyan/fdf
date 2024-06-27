@@ -48,21 +48,21 @@ void draw_all(t_data *param, t_img *img, t_mlx *mlxparams)
             ///////////////////////////////////////////   1
             cordfloat.x = x1 * X_GAP;
 	        cordfloat.y = y1 * Y_GAP;
-            cordfloat.z = param->z_values[y1][x1];
+            cordfloat.z = param->z_values[y1][x1] * Z_GAP;
             //z_rotate(&cordfloat, 45);
             isometric(&cordfloat);
             //x_rotate(&cordfloat, 30);
-            cord.x1 = cordfloat.x + 900;   
-	        cord.y1 = cordfloat.y + 450;
+            cord.x1 = cordfloat.x + param->center_x;   
+	        cord.y1 = cordfloat.y + param->center_y;
             /////////////////////////////////////////   2
             cordfloat.x = x2 * X_GAP;
 	        cordfloat.y = y2 * Y_GAP;
-            cordfloat.z = param->z_values[y2][x2];
+            cordfloat.z = param->z_values[y2][x2] * Z_GAP;
             //z_rotate(&cordfloat, 45);
             isometric(&cordfloat);
             //x_rotate(&cordfloat, 30);
-            cord.x2 = cordfloat.x + 900;   
-	        cord.y2 = cordfloat.y + 450;
+            cord.x2 = cordfloat.x + param->center_x;   
+	        cord.y2 = cordfloat.y + param->center_y;
             draw_line(img, &cord);
             mlx_put_image_to_window(mlxparams->mlx, mlxparams->mlx_win, img->img, 0, 0);
             x1++;
@@ -85,23 +85,23 @@ void draw_all(t_data *param, t_img *img, t_mlx *mlxparams)
             /////////////////////////////////////////////////////   1
 	        cordfloat.x = x1 * X_GAP;
 	        cordfloat.y = y1 * Y_GAP;
-            cordfloat.z = param->z_values[y1][x1];
+            cordfloat.z = param->z_values[y1][x1] * Z_GAP;
             //z_rotate(&cordfloat, 45);
             isometric(&cordfloat);
             //x_rotate(&cordfloat, 30);
-            cord.x1 = cordfloat.x + 900;   
-	        cord.y1 = cordfloat.y + 450;
+            cord.x1 = cordfloat.x + param->center_x;   
+	        cord.y1 = cordfloat.y + param->center_y;
             ///////////////////////////////////////////////////  2
 
 
             cordfloat.x = x2 * X_GAP;
 	        cordfloat.y = y2 * Y_GAP;
-            cordfloat.z = param->z_values[y2][x2];
+            cordfloat.z = param->z_values[y2][x2] * Z_GAP;
             //z_rotate(&cordfloat, 45);
             isometric(&cordfloat);
             //x_rotate(&cordfloat, 30);
-            cord.x2 = cordfloat.x + 900;   
-	        cord.y2 = cordfloat.y + 450;
+            cord.x2 = cordfloat.x + param->center_x;   
+	        cord.y2 = cordfloat.y + param->center_y;
             draw_line(img, &cord);
             mlx_put_image_to_window(mlxparams->mlx, mlxparams->mlx_win, img->img, 0, 0);
             y1++;
@@ -126,6 +126,9 @@ void    draw_map(char *av)
 	img.color = 255;
     param.hight = 0;
     reading_file(av, &param);
+    param.center_x = ((1920 + param.len - 200) / 2);
+    param.center_y = ((1080 + param.hight - 200) / 2);
+    //mlx_hook(mlxparams.mlx_win, KEY_PRESS, KEY_PRESS_MASK, win_hooks, &mlxparams);
     draw_all(&param, &img, &mlxparams);
     free_matrix_int(param.z_values, param.hight);
     mlx_hook(mlxparams.mlx_win, KEY_PRESS, KEY_PRESS_MASK, win_hooks, &mlxparams);

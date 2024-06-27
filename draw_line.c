@@ -8,6 +8,7 @@ void    mlx_pixel_put_img(t_img *img, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
+
 static void draw_line_for_x(t_line *line, t_img *img)
 {
     int i;
