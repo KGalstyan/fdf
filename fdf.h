@@ -6,7 +6,7 @@
 /*   By: kgalstya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:47:15 by kgalstya          #+#    #+#             */
-/*   Updated: 2024/06/27 17:39:40 by kgalstya         ###   ########.fr       */
+/*   Updated: 2024/06/29 15:13:16 by kgalstya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+typedef struct a
+{
+	int			fd;
+	char		*str;
+	int			len;
+	int			len_s;
+}	t_a;
 
 typedef struct s_img
 {
@@ -100,11 +108,6 @@ typedef struct s_mlx
 {
 	void		*mlx;
 	void		*mlx_win;
-	// int     step_right;
-	// int     step_down;
-	// int angle_x;
-	// int angle_y;
-	// int angle_z;
 }				t_mlx;
 
 // libft
@@ -121,6 +124,7 @@ void			free_matrix_int(int **str, int len);
 // correct file name
 int				correct_file(char *av);
 int				is_digit(char h);
+int				line_is_empty(char *str);
 
 // reading file
 void			reading_file(char *av, t_data *param);

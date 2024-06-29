@@ -6,7 +6,7 @@
 /*   By: kgalstya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:34:31 by kgalstya          #+#    #+#             */
-/*   Updated: 2024/06/27 17:34:28 by kgalstya         ###   ########.fr       */
+/*   Updated: 2024/06/29 15:59:47 by kgalstya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	main(int argc, char **argv)
 		if (!correct_file(argv[1]))
 		{
 			ft_printf("Something wrong with file !?\n");
-			// system("leaks fdf");
 			exit(1);
 		}
 		else

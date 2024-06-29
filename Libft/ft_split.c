@@ -6,103 +6,115 @@
 /*   By: kgalstya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:27:07 by kgalstya          #+#    #+#             */
-/*   Updated: 2024/05/30 16:00:01 by kgalstya         ###   ########.fr       */
+/*   Updated: 2024/06/29 14:06:05 by kgalstya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-static size_t	ft_countwords(char const *s, char c)
+void	free_split(char **str)
 {
-	size_t	words;
-	size_t	n;
-	int		flag;
-
-	n = 0;
-	flag = 0;
-	if (!s[n])
-		return (0);
-	words = 0;
-	while (s[n])
-	{
-		if (s[n] != c)
-		{
-			flag = 1;
-		}
-		else if (s[n] == c && flag)
-		{
-			flag = 0;
-			words++;
-		}
-		n++;
-	}
-	return (words + flag);
-}
-
-static size_t	ft_wordsize(char const *s, char c)
-{
-	size_t	i;
-	size_t	len;
+	int	i;
 
 	i = 0;
-	len = 0;
-	while (s[i] && s[i] != c)
+	if (!str)
+		return ;
+	while (str[i])
 	{
-		if (s[i] == c)
-			i++;
-		else
-		{
-			i++;
-			len++;
-		}
+		free(str[i]);
+		str[i] = NULL;
+		i++;
 	}
-	return (len);
+	free(str[i]);
+	str[i] = NULL;
+	free(str);
+	str = NULL;
+}
+
+static int	words_count(char const *s, char sep)
+{
+	int	i;
+	int	count_words;
+
+	i = 1;
+	count_words = 0;
+	if (s == NULL)
+		return (count_words);
+	if (s[0] != sep)
+		count_words++;
+	while (s[i])
+	{
+		if ((s[i] != sep) && (s[i - 1] == sep))
+			count_words++;
+		i++;
+	}
+	return (count_words);
+}
+
+static char	*ft_strndup(const char *str, int n)
+{
+	int		i;
+	char	*copy;
+
+	copy = (char *)malloc(sizeof(char) * (n + 1));
+	if (copy == NULL)
+		return (NULL);
+	i = 0;
+	while (i < n)
+	{
+		copy[i] = str[i];
+		i++;
+	}
+	copy[i] = '\0';
+	return (copy);
+}
+
+static int	fill(char **res, char const *s, char c, int nb_words)
+{
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	k = 0;
+	while (s[k] && i < nb_words)
+	{
+		j = 0;
+		while (s[k] && (s[k] == c))
+			k++;
+		while (s[k + j] && (s[k + j] != c))
+			j++;
+		res[i] = ft_strndup(&s[k], j);
+		if (res[i] == NULL)
+			return (0);
+		i++;
+		k += j;
+	}
+	res[nb_words] = 0;
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**res;
-	size_t	i;
-	size_t	l;
-	size_t	len;
+	int		nb_words;
 
 	if (!s)
 		return (NULL);
-	len = ft_countwords(s, c);
-	res = (char **)malloc((len + 1) * sizeof(char *));
-	if (!res)
-		return (NULL);
-	res[len] = NULL;
-	i = 0;
-	l = 0;
-	while (l < len)
+	if (*s == '\0')
 	{
-		while (s[i] == c && s[i])
-			i++;
-		res[l] = ft_substr(&s[i], 0, ft_wordsize(&s[i], c));
-		while (s[i] != c && s[i])
-			i++;
-		l++;
+		res = (char **)malloc(sizeof(char *));
+		*res = NULL;
+		return (res);
+	}
+	nb_words = words_count(s, c);
+	res = (char **)malloc(sizeof(char *) * (nb_words + 1));
+	if (res == NULL)
+		return (NULL);
+	if (!fill(res, s, c, nb_words))
+	{
+		free_split(res);
+		return (NULL);
 	}
 	return (res);
 }
-
-/*
-int	main(void)
-{
-	char	*des;
-	int		i;
-	char	**arr;
-
-	des = "--1-2--3---4----5-----42";
-	i = 0;
-	arr = ft_split(des, '-');
-	while (i < 6)
-	{
-		printf("str=%s\n", arr[i]);
-		i++;
-	}
-	free(arr);
-	return(0);
-}
-*/
