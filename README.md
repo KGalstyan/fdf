@@ -23,18 +23,10 @@
 
 - Reads and parses 2D coordinate maps from text files  
 - Applies isometric projection for 3D visualization  
+- Implements Bresenham's line algorithm for efficient line drawing  
 - Implements zoom, pan, and rotation controls  
 - Utilizes MiniLibX for window management and rendering  
-- Efficiently handles dynamic input sizes  
-
----
-
-## 🎮 Controls
-
-- **Arrow Keys:** Move the map  
-- **+ / -:** Zoom in/out  
-- **R:** Reset view  
-- **ESC:** Exit the program  
+- Efficiently handles dynamic input sizes 
 
 ---
 
